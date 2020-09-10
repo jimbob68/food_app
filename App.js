@@ -8,6 +8,7 @@ import ResultsScreen from './src/screens/ResultsScreen';
 export default function App() {
 	const [ recipeName, setRecipeName ] = useState('');
 	const [ recipeResults, setRecipeResults ] = useState([]);
+	const [ selectedIngredients, setSelectedIngredients ] = useState([]);
 
 	// useEffect(() => {
 	// 	fetch(
@@ -21,7 +22,12 @@ export default function App() {
 		<View style={styles.container}>
 			<NavBar />
 			<Text>{recipeName}</Text>
-			<RecipeSelectScreen />
+			<RecipeSelectScreen
+				selectedIngredients={selectedIngredients}
+				setSelectedIngredients={setSelectedIngredients}
+				recipeResults={recipeResults}
+				setRecipeResults={setRecipeResults}
+			/>
 			{/* <ResultsScreen selectedIngredients={selectedIngredients} /> */}
 		</View>
 	);

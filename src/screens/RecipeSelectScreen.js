@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import ApiKey from '../../ApiKey.js';
 
-const RecipeSelectScreen = () => {
+const RecipeSelectScreen = ({selectedIngredients, setSelectedIngredients, recipeResults, setRecipeResults}) => {
 	const [ searchResults, setSearchResults ] = useState([]);
 	const [ inputValue, setInputValue ] = useState('');
-	const [ selectedIngredients, setSelectedIngredients ] = useState([]);
+	
 
 	const searchIngredients = (input) => {
 		setInputValue(input);
@@ -21,6 +21,21 @@ const RecipeSelectScreen = () => {
 			setSelectedIngredients(newSelectedIngredients);
 	}
 
+	const getRecipes = () => {
+		const formattedIngredients = selectedIngredients.map(ingredient => '+' + ingredient.name)
+		const ingredientsAsString = formattedIngredients.join()
+		const ingredientsWithoutSpaces = ingredientsAsString.replace(/, /g, ',')
+		const hyphenedIngredients = ingredientsWithoutSpaces.replace(/ /g, '-')
+		const properlyFormattedIngredients = hyphenedIngredients.substring(1)
+		fetch(
+			'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + properlyFormattedIngredients + '&number=2&apiKey=91a3c67e4c2a4d93a113ef959566ce8f'
+		)
+			.then((res) => res.json())
+			.then((res ) => console.log(res))
+			// .then((results) => setRecipeResults(results))
+			// .then(() => console.log('result', recipeResults))
+	}
+
 	return (
 		<View>
 			<Text>Recipe Select Screen</Text>
@@ -34,8 +49,6 @@ const RecipeSelectScreen = () => {
 							setSelectedIngredients(newSelectedIngredients);
 							setInputValue('');
 							setSearchResults([]);
-							console.log(item);
-							console.log(selectedIngredients);
 						}}
 					>
 						<Text>{item.name}</Text>
@@ -55,15 +68,13 @@ const RecipeSelectScreen = () => {
 					</TouchableOpacity>
 					</>
 
-					// <TouchableOpacity
-					// 	onPress={() => {
-					// 		console.log(item);
-					// 	}}
-					// >
-					// <Text>{item.name}Remove</Text>
-					// {/* </TouchableOpacity> */}
 				)}
 			/>
+
+					<TouchableOpacity onPress={() => getRecipes()}>
+						<Text>Submit Ingredients</Text>
+					</TouchableOpacity>
+
 		</View>
 	);
 };
