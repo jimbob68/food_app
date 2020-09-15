@@ -14,7 +14,7 @@ export default function App() {
 
 	// useEffect(() => {
 	// 	fetch(
-	// 		'https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2&apiKey=91a3c67e4c2a4d93a113ef959566ce8f'
+	// 		'https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2&apiKey=' + ApiKey
 	// 	)
 	// 		.then((res) => res.json())
 	// 		.then((results) => setRecipeResults(results));
