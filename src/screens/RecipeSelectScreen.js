@@ -22,24 +22,25 @@ const RecipeSelectScreen = ({selectedIngredients, setSelectedIngredients, recipe
 	}
 
 	const getRecipes = () => {
-		const formattedIngredients = selectedIngredients.map(ingredient => '+' + ingredient.name)
-		const ingredientsAsString = formattedIngredients.join()
-		const ingredientsWithoutSpaces = ingredientsAsString.replace(/, /g, ',')
-		const hyphenedIngredients = ingredientsWithoutSpaces.replace(/ /g, '-')
-		const properlyFormattedIngredients = hyphenedIngredients.substring(1)
+		const ingredientNames = selectedIngredients.map(ingredient => ingredient.name)
+		const ingredientsAsString = ingredientNames.join()
+		const noSpacesBetweenIngredients = ingredientsAsString.replace(/, /g, ',+')
+		const properlyFormattedIngredients = noSpacesBetweenIngredients.replace(/ /g, '-')
+
 		fetch(
 			'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' + properlyFormattedIngredients + '&number=2&apiKey=91a3c67e4c2a4d93a113ef959566ce8f'
 		)
 			.then((res) => res.json())
-			.then((res ) => console.log(res))
-			// .then((results) => setRecipeResults(results))
+			// .then((res ) => console.log(res))
+			.then((results) => setRecipeResults(results))
 			// .then(() => console.log('result', recipeResults))
 	}
 
 	return (
 		<View>
 			<Text>Recipe Select Screen</Text>
-			<TextInput onChangeText={(input) => searchIngredients(input)} value={inputValue} style={styles.input_box} />
+			<Text style={styles.font}>Search for an ingredient then click from the list below</Text>
+			<TextInput style={styles.input_box} onChangeText={(input) => searchIngredients(input)} value={inputValue}  />
 			<FlatList
 				data={searchResults}
 				renderItem={({ item }) => (
@@ -51,7 +52,7 @@ const RecipeSelectScreen = ({selectedIngredients, setSelectedIngredients, recipe
 							setSearchResults([]);
 						}}
 					>
-						<Text>{item.name}</Text>
+						<Text style={styles.font}>{item.name}</Text>
 					</TouchableOpacity>
 				)}
 			/>
@@ -60,19 +61,19 @@ const RecipeSelectScreen = ({selectedIngredients, setSelectedIngredients, recipe
 				renderItem={({ item }) => (
 
 					<>
-					<Text>{item.name}</Text>
+					<Text style={styles.font}>{item.name}</Text>
 					<TouchableOpacity 
 						onPress={() => removeIngredient(item)}
 					>
-						<Text>Remove</Text>
+						<Text style={styles.font} >Remove</Text>
 					</TouchableOpacity>
 					</>
 
 				)}
 			/>
 
-					<TouchableOpacity onPress={() => getRecipes()}>
-						<Text>Submit Ingredients</Text>
+					<TouchableOpacity style={styles.submit_button} onPress={() => getRecipes()}>
+						<Text style={styles.submit_text}>Get Recipes</Text>
 					</TouchableOpacity>
 
 		</View>
@@ -80,9 +81,26 @@ const RecipeSelectScreen = ({selectedIngredients, setSelectedIngredients, recipe
 };
 
 const styles = StyleSheet.create({
+	font:{
+		fontSize: 20
+	},
 	input_box: {
 		borderWidth: 1,
-		borderColor: 'blue'
+		borderColor: 'blue',
+		fontSize: 20,
+	},
+	submit_button: {
+		borderWidth: 1,
+		borderColor: 'black',
+		backgroundColor: 'green',
+		borderRadius: 8,
+		marginTop: 15
+	},
+	submit_text: {
+		color: 'white',
+		padding: 5,
+		textAlign: 'center',
+		fontSize: 20
 	}
 });
 
