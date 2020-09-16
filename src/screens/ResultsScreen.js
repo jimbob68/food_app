@@ -1,31 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const ResultsScreen = ({ recipeResults, setSelectedRecipe }) => {
+// const ResultsScreen = ({ recipeResults, setSelectedRecipe }) => {
+	const ResultsScreen = ({ route, navigation }) => {
+		const [ recipeResults, setRecipeResults ] = useState(route.params.recipeResults)
 	return (
-	<>
-	<Text>Results Screen</Text>
-	<FlatList
-		data={recipeResults}
-		renderItem={({ item }) => (
-			<TouchableOpacity
-				onPress={() => {
-					setSelectedRecipe(item);
-					console.log(item);
-				}}
-			>
-			<Text>{item.title}</Text>
-			<Image
-				style={styles.image}
-				source={{
-					uri: item.image,
-				}}
+		<>{console.log("recipe results", recipeResults)}
+			<Text>Results Screen</Text>
+			<FlatList
+				data={recipeResults}
+				renderItem={({ item }) => (
+					<TouchableOpacity
+						onPress={() => {
+							setSelectedRecipe(item);
+							console.log(item);
+						}}
+					>
+						<Text>{item.title}</Text>
+						<Image
+							style={styles.image}
+							source={{
+								uri: item.image,
+							}}
+						/>
+					</TouchableOpacity>
+				)}
 			/>
-			</TouchableOpacity>
-		)}
-	/>
-	
-	</>
+		</>
 	)};
 
 	const styles = StyleSheet.create({
