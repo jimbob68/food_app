@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
 import ApiKey from '../../ApiKey.js';
 
 // const RecipeSelectScreen = ({ selectedIngredients, setSelectedIngredients, recipeResults, setRecipeResults }) => {
-	const RecipeSelectScreen = ({ route, navigation }) => {
-		const [selectedIngredients, setSelectedIngredients ] = useState(route.params.selectedIngredients);
-		// const {setSelectedIngredients} = route.params
-		const [recipeResults, setRecipeResults] = useState(route.params.recipeResults);
-		// const {setRecipeResults} = route.params
+const RecipeSelectScreen = ({ route, navigation }) => {
+	const [ selectedIngredients, setSelectedIngredients ] = useState([]);
+	// const {setSelectedIngredients} = route.params
+	const [ recipeResults, setRecipeResults ] = useState([]);
+	// const {setRecipeResults} = route.params
 	const [ searchResults, setSearchResults ] = useState([]);
 	const [ inputValue, setInputValue ] = useState('');
 
@@ -34,38 +34,38 @@ import ApiKey from '../../ApiKey.js';
 		fetch(
 			'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' +
 				properlyFormattedIngredients +
-				'&number=2&apiKey=91a3c67e4c2a4d93a113ef959566ce8f'
+				'&number=6&apiKey=91a3c67e4c2a4d93a113ef959566ce8f'
 		)
 			.then((res) => res.json())
 			// .then((res ) => console.log(res))
 			.then((results) => {
-				setRecipeResults(results)
-				return results
-		})
+				setRecipeResults(results);
+				return results;
+			})
 			// .then(() => console.log('result', recipeResults))
-			.then((results) => navigation.navigate("ResultsScreen", {recipeResults: results}))
+			.then((results) => navigation.navigate('ResultsScreen', { recipeResults: results }));
 	};
 
 	return (
-		<View style={styles.recipeSelectContainer}>
-			<Text>Recipe Select Screen</Text>
+		<View style={styles.recipe_select_container}>
 			<Text style={styles.font}>Search for an ingredient then click from the list below</Text>
 			<TextInput style={styles.input_box} onChangeText={(input) => searchIngredients(input)} value={inputValue} />
 			<FlatList
 				data={searchResults}
 				// style={styles.flatlist}
 				// ListEmptyComponent={<Text>hi</Text>}
-				renderItem={({ item }) => (
+				renderItem={({ item, index }) => (
 					<TouchableOpacity
+						key={index.toString()}
 						onPress={() => {
-							console.log(selectedIngredients)
+							console.log(selectedIngredients);
 							const newSelectedIngredients = selectedIngredients.concat(item);
 							setSelectedIngredients(newSelectedIngredients);
 							setInputValue('');
 							setSearchResults([]);
 						}}
 					>
-						<Text style={styles.font}>{item.name}</Text>
+						<Text style={styles.dropdown_text}>{item.name}</Text>
 					</TouchableOpacity>
 				)}
 			/>
@@ -73,17 +73,13 @@ import ApiKey from '../../ApiKey.js';
 				data={selectedIngredients}
 				// style={styles.flatlist}
 				// ListEmptyComponent={<Text>hi</Text>}
-				renderItem={({ item }) => (
-
-					<>
-					<Text style={styles.font}>{item.name}</Text>
-					<TouchableOpacity 
-						onPress={() => removeIngredient(item)}
-					>
-						<Text style={styles.font} >Remove</Text>
-					</TouchableOpacity>
-					</>
-
+				renderItem={({ item, index }) => (
+					<View key={index.toString()} style={styles.ingredient_select}>
+						<Text style={styles.ingredient_name}>{item.name}</Text>
+						<TouchableOpacity style={styles.remove_button} onPress={() => removeIngredient(item)}>
+							<Text style={styles.remove_button_text}>X</Text>
+						</TouchableOpacity>
+					</View>
 				)}
 			/>
 
@@ -96,34 +92,83 @@ import ApiKey from '../../ApiKey.js';
 
 const styles = StyleSheet.create({
 	font: {
-		fontSize: 20
+		fontSize: 25,
+		textAlign: 'center'
 	},
 	input_box: {
 		borderWidth: 1,
 		borderColor: 'blue',
-		fontSize: 20
+		fontSize: 25,
+		width: 250,
+		marginTop: 20,
+		padding: 5
 	},
 	submit_button: {
 		borderWidth: 1,
 		borderColor: 'black',
 		backgroundColor: 'green',
 		borderRadius: 8,
-		marginTop: 15
+		marginTop: 20
 	},
 	submit_text: {
 		color: 'white',
 		padding: 5,
 		textAlign: 'center',
-		fontSize: 20
+		fontSize: 25
 	},
-	recipeSelectContainer: {
-		// flex: 1
+	ingredient_select: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		paddingTop: 10
 	},
-	flatlist: {
-		height: 20,
-		margin: 0,
-		padding: 0,
+
+	recipe_select_container: {
+		flex: 1,
+		// flexDirection: 'column',
+		alignItems: 'center',
+		paddingVertical: 30,
+		paddingHorizontal: 15,
+		backgroundColor: 'pink',
+		height: '100%',
+		justifyContent: 'flex-start'
+	},
+	// flatlist: {
+	// 	height: 20,
+	// 	margin: 0,
+	// 	padding: 0
+	// },
+	remove_button: {
+		marginLeft: 25,
+		backgroundColor: 'red',
+		padding: 10,
+		borderRadius: 5,
+		height: 50
+	},
+	ingredient_name: {
+		padding: 10,
+		fontSize: 25
+	},
+	remove_button_text: {
+		color: 'white',
+		fontSize: 25,
+		fontWeight: 'bold'
+	},
+	dropdown_text: {
+		fontSize: 25,
+		padding: 5,
+		backgroundColor: 'lightblue',
+		width: 250,
+		marginBottom: 2
 	}
+	// background_image: {
+	// 	// flex: 1,
+	// 	// height: 100,
+	// 	// width: 100,
+	// 	resizeMode: 'cover',
+	// 	justifyContent: 'center',
+	// 	backgroundColor: 'rgba(0,0,0,0.5)'
+	// }
 });
 
 export default RecipeSelectScreen;

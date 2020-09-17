@@ -9,8 +9,9 @@ import { Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-nativ
 			<Text>Results Screen</Text>
 			<FlatList
 				data={recipeResults}
-				renderItem={({ item }) => (
+				renderItem={({ item, index }) => (
 					<TouchableOpacity
+						key={ index.toString() }
 						onPress={() => {
 							// setSelectedRecipe(item);
 							console.log(item);

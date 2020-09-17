@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 // import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, ScrollView } from 'react-native';
+import { StyleSheet, Text, ScrollView, View } from 'react-native';
 // import NavBar from './src/components/NavBar.js';
 import RecipeSelectScreen from './src/screens/RecipeSelectScreen.js';
 import ResultsScreen from './src/screens/ResultsScreen';
@@ -29,18 +29,34 @@ export default function App() {
 		<NavigationContainer>
 			<Stack.Navigator>
 				<Stack.Screen
+					style={{ backgroundColor: 'red' }}
 					name="RecipeSelectScreen"
 					component={RecipeSelectScreen}
-					initialParams={{
-						selectedIngredients: selectedIngredients,
-						setSelectedIngredients: setSelectedIngredients,
-						recipeResults: recipeResults,
-						setRecipeResults: setRecipeResults
+					options={{
+						title: 'Select Ingredients',
+						headerStyle: {
+							backgroundColor: 'blue'
+						},
+						headerTintColor: '#fff',
+						headerTitleStyle: {
+							fontWeight: 'bold',
+							fontSize: 20
+						}
 					}}
+					// initialParams={{
+					// 	selectedIngredients: selectedIngredients,
+					// 	setSelectedIngredients: setSelectedIngredients,
+					// 	recipeResults: recipeResults,
+					// 	setRecipeResults: setRecipeResults
+					// }}
 				/>
 
-				<Stack.Screen name="ResultsScreen" component={ResultsScreen} />
-				<Stack.Screen name="RecipeDetailsScreen" component={RecipeDetailsScreen} />
+				<Stack.Screen name="ResultsScreen" component={ResultsScreen} options={{ title: 'Search Results' }} />
+				<Stack.Screen
+					name="RecipeDetailsScreen"
+					component={RecipeDetailsScreen}
+					options={{ title: 'Recipe Details' }}
+				/>
 				{/* <ScrollView style={styles.container}> */}
 				{/* <NavBar /> */}
 				{/* <Text>{recipeName}</Text> */}
@@ -58,12 +74,3 @@ export default function App() {
 		</NavigationContainer>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff'
-		// alignItems: 'center'
-		// justifyContent: 'center'
-	}
-});
