@@ -12,8 +12,9 @@ import { Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-nativ
 				renderItem={({ item }) => (
 					<TouchableOpacity
 						onPress={() => {
-							setSelectedRecipe(item);
+							// setSelectedRecipe(item);
 							console.log(item);
+							navigation.navigate("RecipeDetailsScreen", {selectedRecipe: item})
 						}}
 					>
 						<Text>{item.title}</Text>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
 import ApiKey from '../../ApiKey.js';
 
-const RecipeResultScreen = ({ selectedRecipe }) => {
+const RecipeDetailsScreen = ({ route, navigation }) => {
 	const [ recipeInfo, setRecipeInfo ] = useState({});
 	const [ ingredientsList, setIngredientsList ] = useState([]);
+	const [ selectedRecipe, setSelectedRecipe ] = useState(route.params.selectedRecipe);
 
 	useEffect(
 		() => {
@@ -52,6 +53,9 @@ const RecipeResultScreen = ({ selectedRecipe }) => {
 					</Text>
 				)}
 			/>
+			<TouchableOpacity onPress={() => navigation.navigate('RecipeSelectScreen')}>
+				<Text>New Search</Text>
+			</TouchableOpacity>
 		</View>
 	);
 };
@@ -62,4 +66,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default RecipeResultScreen;
+export default RecipeDetailsScreen;

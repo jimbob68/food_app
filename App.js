@@ -7,7 +7,7 @@ import { StyleSheet, Text, ScrollView } from 'react-native';
 // import NavBar from './src/components/NavBar.js';
 import RecipeSelectScreen from './src/screens/RecipeSelectScreen.js';
 import ResultsScreen from './src/screens/ResultsScreen';
-import RecipeResultScreen from './src/screens/RecipeResultScreen.js';
+import RecipeDetailsScreen from './src/screens/RecipeDetailsScreen.js';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +40,7 @@ export default function App() {
 				/>
 
 				<Stack.Screen name="ResultsScreen" component={ResultsScreen} />
+				<Stack.Screen name="RecipeDetailsScreen" component={RecipeDetailsScreen} />
 				{/* <ScrollView style={styles.container}> */}
 				{/* <NavBar /> */}
 				{/* <Text>{recipeName}</Text> */}
