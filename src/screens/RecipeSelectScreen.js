@@ -38,9 +38,12 @@ import ApiKey from '../../ApiKey.js';
 		)
 			.then((res) => res.json())
 			// .then((res ) => console.log(res))
-			.then((results) => setRecipeResults(results))
-			.then(() => console.log('result', recipeResults))
-			.then(() => navigation.navigate("ResultsScreen", {recipeResults: recipeResults}))
+			.then((results) => {
+				setRecipeResults(results)
+				return results
+		})
+			// .then(() => console.log('result', recipeResults))
+			.then((results) => navigation.navigate("ResultsScreen", {recipeResults: results}))
 	};
 
 	return (
