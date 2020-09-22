@@ -12,6 +12,7 @@ import RecipeDetailsScreen from './src/screens/RecipeDetailsScreen.js';
 const Stack = createStackNavigator();
 
 export default function App() {
+	console.disableYellowBox = true;
 	// const [ recipeName, setRecipeName ] = useState('');
 	const [ recipeResults, setRecipeResults ] = useState([]);
 	const [ selectedIngredients, setSelectedIngredients ] = useState([]);
@@ -50,11 +51,35 @@ export default function App() {
 					// }}
 				/>
 
-				<Stack.Screen name="ResultsScreen" component={ResultsScreen} options={{ title: 'Search Results' }} />
+				<Stack.Screen
+					name="ResultsScreen"
+					component={ResultsScreen}
+					options={{
+						title: 'Search Results',
+						headerStyle: {
+							backgroundColor: 'blue'
+						},
+						headerTintColor: '#fff',
+						headerTitleStyle: {
+							fontWeight: 'bold',
+							fontSize: 20
+						}
+					}}
+				/>
 				<Stack.Screen
 					name="RecipeDetailsScreen"
 					component={RecipeDetailsScreen}
-					options={{ title: 'Recipe Details' }}
+					options={{
+						title: 'Recipe Details',
+						headerStyle: {
+							backgroundColor: 'blue'
+						},
+						headerTintColor: '#fff',
+						headerTitleStyle: {
+							fontWeight: 'bold',
+							fontSize: 20
+						}
+					}}
 				/>
 				{/* <ScrollView style={styles.container}> */}
 				{/* <NavBar /> */}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, TextInput, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import ApiKey from '../../ApiKey.js';
 
 // const RecipeSelectScreen = ({ selectedIngredients, setSelectedIngredients, recipeResults, setRecipeResults }) => {
@@ -34,7 +34,8 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 		fetch(
 			'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' +
 				properlyFormattedIngredients +
-				'&number=2&apiKey=91a3c67e4c2a4d93a113ef959566ce8f'
+				'&number=2&apiKey=' +
+				ApiKey
 		)
 			.then((res) => res.json())
 			// .then((res ) => console.log(res))
@@ -48,44 +49,50 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 
 	return (
 		<View style={styles.recipe_select_container}>
-			<Text style={styles.font}>Search for an ingredient then click from the list below</Text>
-			<TextInput style={styles.input_box} onChangeText={(input) => searchIngredients(input)} value={inputValue} />
-			<FlatList
-				data={searchResults}
-				// style={styles.flatlist}
-				// ListEmptyComponent={<Text>hi</Text>}
-				renderItem={({ item, index }) => (
-					<TouchableOpacity
-						keyExtractor={index.toString()}
-						onPress={() => {
-							console.log(selectedIngredients);
-							const newSelectedIngredients = selectedIngredients.concat(item);
-							setSelectedIngredients(newSelectedIngredients);
-							setInputValue('');
-							setSearchResults([]);
-						}}
-					>
-						<Text style={styles.dropdown_text}>{item.name}</Text>
-					</TouchableOpacity>
-				)}
-			/>
-			<FlatList
-				data={selectedIngredients}
-				// style={styles.flatlist}
-				// ListEmptyComponent={<Text>hi</Text>}
-				renderItem={({ item, index }) => (
-					<View keyExtractor={index.toString()} style={styles.ingredient_select}>
-						<Text style={styles.ingredient_name}>{item.name}</Text>
-						<TouchableOpacity style={styles.remove_button} onPress={() => removeIngredient(item)}>
-							<Text style={styles.remove_button_text}>X</Text>
+			<ScrollView>
+				<Text style={styles.font}>Search for an ingredient then click from the list below</Text>
+				<TextInput
+					style={styles.input_box}
+					onChangeText={(input) => searchIngredients(input)}
+					value={inputValue}
+				/>
+				<FlatList
+					data={searchResults}
+					// style={styles.flatlist}
+					// ListEmptyComponent={<Text>hi</Text>}
+					renderItem={({ item, index }) => (
+						<TouchableOpacity
+							keyExtractor={index.toString()}
+							onPress={() => {
+								console.log(selectedIngredients);
+								const newSelectedIngredients = selectedIngredients.concat(item);
+								setSelectedIngredients(newSelectedIngredients);
+								setInputValue('');
+								setSearchResults([]);
+							}}
+						>
+							<Text style={styles.dropdown_text}>{item.name}</Text>
 						</TouchableOpacity>
-					</View>
-				)}
-			/>
+					)}
+				/>
+				<FlatList
+					data={selectedIngredients}
+					// style={styles.flatlist}
+					// ListEmptyComponent={<Text>hi</Text>}
+					renderItem={({ item, index }) => (
+						<View keyExtractor={index.toString()} style={styles.ingredient_select}>
+							<Text style={styles.ingredient_name}>{item.name}</Text>
+							<TouchableOpacity style={styles.remove_button} onPress={() => removeIngredient(item)}>
+								<Text style={styles.remove_button_text}>X</Text>
+							</TouchableOpacity>
+						</View>
+					)}
+				/>
 
-			<TouchableOpacity style={styles.submit_button} onPress={() => getRecipes()}>
-				<Text style={styles.submit_text}>Get Recipes</Text>
-			</TouchableOpacity>
+				<TouchableOpacity style={styles.submit_button} onPress={() => getRecipes()}>
+					<Text style={styles.submit_text}>Get Recipes</Text>
+				</TouchableOpacity>
+			</ScrollView>
 		</View>
 	);
 };
@@ -101,7 +108,8 @@ const styles = StyleSheet.create({
 		fontSize: 25,
 		width: 250,
 		marginTop: 20,
-		padding: 5
+		padding: 5,
+		alignSelf: 'center'
 	},
 	submit_button: {
 		borderWidth: 1,
@@ -117,7 +125,7 @@ const styles = StyleSheet.create({
 		fontSize: 25
 	},
 	ingredient_select: {
-		flex: 1,
+		// flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		paddingTop: 10
@@ -130,7 +138,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 30,
 		paddingHorizontal: 15,
 		backgroundColor: 'pink',
-		height: '100%',
+		// height: '100%',
 		justifyContent: 'flex-start'
 	},
 	// flatlist: {
