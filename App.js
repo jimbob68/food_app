@@ -29,7 +29,6 @@ export default function App() {
 		<NavigationContainer>
 			<Stack.Navigator>
 				<Stack.Screen
-					style={{ backgroundColor: 'red' }}
 					name="RecipeSelectScreen"
 					component={RecipeSelectScreen}
 					options={{

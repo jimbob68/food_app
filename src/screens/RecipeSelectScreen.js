@@ -34,7 +34,7 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 		fetch(
 			'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' +
 				properlyFormattedIngredients +
-				'&number=6&apiKey=91a3c67e4c2a4d93a113ef959566ce8f'
+				'&number=2&apiKey=91a3c67e4c2a4d93a113ef959566ce8f'
 		)
 			.then((res) => res.json())
 			// .then((res ) => console.log(res))
@@ -56,7 +56,7 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 				// ListEmptyComponent={<Text>hi</Text>}
 				renderItem={({ item, index }) => (
 					<TouchableOpacity
-						key={index.toString()}
+						keyExtractor={index.toString()}
 						onPress={() => {
 							console.log(selectedIngredients);
 							const newSelectedIngredients = selectedIngredients.concat(item);
@@ -74,7 +74,7 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 				// style={styles.flatlist}
 				// ListEmptyComponent={<Text>hi</Text>}
 				renderItem={({ item, index }) => (
-					<View key={index.toString()} style={styles.ingredient_select}>
+					<View keyExtractor={index.toString()} style={styles.ingredient_select}>
 						<Text style={styles.ingredient_name}>{item.name}</Text>
 						<TouchableOpacity style={styles.remove_button} onPress={() => removeIngredient(item)}>
 							<Text style={styles.remove_button_text}>X</Text>

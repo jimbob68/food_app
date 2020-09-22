@@ -11,7 +11,7 @@ import { Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-nativ
 				data={recipeResults}
 				renderItem={({ item, index }) => (
 					<TouchableOpacity
-						key={ index.toString() }
+						keyExtractor={ index.toString() }
 						onPress={() => {
 							// setSelectedRecipe(item);
 							console.log(item);

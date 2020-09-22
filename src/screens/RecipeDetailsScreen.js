@@ -48,7 +48,7 @@ const RecipeDetailsScreen = ({ route, navigation }) => {
 			<FlatList
 				data={ingredientsList}
 				renderItem={({ item, index }) => (
-					<Text key={index.toString()}>
+					<Text keyExtractor={index.toString()}>
 						{item.name} {item.measures.metric.amount} {item.measures.metric.unitShort}
 					</Text>
 				)}
