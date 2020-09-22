@@ -11,23 +11,33 @@ const ResultsScreen = ({ route, navigation }) => {
 			<FlatList
 				data={recipeResults}
 				renderItem={({ item, index }) => (
-					<TouchableOpacity
-						style={styles.recipe_result}
-						keyExtractor={index.toString()}
-						onPress={() => {
-							// setSelectedRecipe(item);
-							console.log(item);
-							navigation.navigate('RecipeDetailsScreen', { selectedRecipe: item });
-						}}
-					>
-						<Text style={styles.recipe_result_text}>{item.title}</Text>
-						<Image
-							style={styles.image}
-							source={{
-								uri: item.image
+					<View style={styles.recipe_result} keyExtractor={index.toString()}>
+						<TouchableOpacity
+							onPress={() => {
+								// setSelectedRecipe(item);
+								console.log(item);
+								navigation.navigate('RecipeDetailsScreen', { selectedRecipe: item });
 							}}
-						/>
-					</TouchableOpacity>
+						>
+							<Text style={styles.recipe_result_text}>{item.title}</Text>
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							style={styles.image_link}
+							onPress={() => {
+								// setSelectedRecipe(item);
+								console.log(item);
+								navigation.navigate('RecipeDetailsScreen', { selectedRecipe: item });
+							}}
+						>
+							<Image
+								style={styles.image}
+								source={{
+									uri: item.image
+								}}
+							/>
+						</TouchableOpacity>
+					</View>
 				)}
 			/>
 		</View>
@@ -65,6 +75,10 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		padding: 5,
 		color: 'darkblue'
+	},
+	image_link: {
+		width: 100,
+		alignSelf: 'center'
 	}
 });
 

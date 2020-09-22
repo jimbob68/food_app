@@ -8,6 +8,7 @@ import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import RecipeSelectScreen from './src/screens/RecipeSelectScreen.js';
 import ResultsScreen from './src/screens/ResultsScreen';
 import RecipeDetailsScreen from './src/screens/RecipeDetailsScreen.js';
+import HomeScreen from './src/screens/HomeScreen.js';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,22 @@ export default function App() {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator>
+				<Stack.Screen
+					name="HomeScreen"
+					component={HomeScreen}
+					options={{
+						title: 'Home',
+						headerStyle: {
+							backgroundColor: 'blue'
+						},
+						headerTintColor: '#fff',
+						headerTitleStyle: {
+							fontWeight: 'bold',
+							fontSize: 20
+						}
+					}}
+				/>
+
 				<Stack.Screen
 					name="RecipeSelectScreen"
 					component={RecipeSelectScreen}

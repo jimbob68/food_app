@@ -57,6 +57,7 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 					value={inputValue}
 				/>
 				<FlatList
+					style={styles.dropdown_list}
 					data={searchResults}
 					// style={styles.flatlist}
 					// ListEmptyComponent={<Text>hi</Text>}
@@ -168,6 +169,10 @@ const styles = StyleSheet.create({
 		backgroundColor: 'lightblue',
 		width: 250,
 		marginBottom: 2
+	},
+
+	dropdown_list: {
+		alignSelf: 'center'
 	}
 	// background_image: {
 	// 	// flex: 1,
