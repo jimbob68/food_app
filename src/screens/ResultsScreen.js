@@ -3,7 +3,7 @@ import { Text, FlatList, TouchableOpacity, Image, StyleSheet, View } from 'react
 
 // const ResultsScreen = ({ recipeResults, setSelectedRecipe }) => {
 const ResultsScreen = ({ route, navigation }) => {
-	const [ recipeResults, setRecipeResults ] = useState(route.params.recipeResults);
+	const [ recipeResults, setRecipeResults ] = useState(route.params.recipeResults.results);
 	return (
 		<View style={styles.results_container}>
 			{console.log('recipe results', recipeResults)}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import ApiKey from '../../ApiKey.js';
+import Intolerances from '../components/Intolerances.js';
 
 // const RecipeSelectScreen = ({ selectedIngredients, setSelectedIngredients, recipeResults, setRecipeResults }) => {
 const RecipeSelectScreen = ({ route, navigation }) => {
@@ -10,6 +11,7 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 	// const {setRecipeResults} = route.params
 	const [ searchResults, setSearchResults ] = useState([]);
 	const [ inputValue, setInputValue ] = useState('');
+	const [ intolerances, setIntolerances ] = useState([]);
 
 	const searchIngredients = (input) => {
 		setInputValue(input);
@@ -29,16 +31,26 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 		const ingredientNames = selectedIngredients.map((ingredient) => ingredient.name);
 		const ingredientsAsString = ingredientNames.join();
 		const noSpacesBetweenIngredients = ingredientsAsString.replace(/, /g, ',+');
-		const properlyFormattedIngredients = noSpacesBetweenIngredients.replace(/ /g, '-');
+		const properlyFormattedIngredients = noSpacesBetweenIngredients.replace(/ /g, '%20');
+		// console.log('properlyFormattedIngredients', properlyFormattedIngredients2);
+		// const properlyFormattedIngredients = 'cheese,+eggs';
+
+		const intolerancesAsString = intolerances.join();
+		const noSpacesBetweenIntolerances = intolerancesAsString.replace(/, /g, ',');
+		const properlyFormattedIntolerances = noSpacesBetweenIntolerances.replace(/ /g, '-');
 
 		fetch(
-			'https://api.spoonacular.com/recipes/findByIngredients?ingredients=' +
+			// 'https://api.spoonacular.com/recipes/complexSearch?intolerances=Gluten,peanut,tree-nut&includeIngredients=cheese,+eggs&number=2&apiKey=02839c6bce744468bc5145a26d384982'
+			'https://api.spoonacular.com/recipes/complexSearch?includeIngredients=' +
 				properlyFormattedIngredients +
+				'&intolerances=' +
+				properlyFormattedIntolerances +
 				'&number=2&apiKey=' +
 				ApiKey
 		)
 			.then((res) => res.json())
-			// .then((res ) => console.log(res))
+			// .then((res) => console.log('results', res))
+			// .then((res) => console.log('ingedients', selectedIngredients))
 			.then((results) => {
 				setRecipeResults(results);
 				return results;
@@ -65,7 +77,7 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 						<TouchableOpacity
 							keyExtractor={index.toString()}
 							onPress={() => {
-								console.log(selectedIngredients);
+								console.log('selectedIngredients', selectedIngredients);
 								const newSelectedIngredients = selectedIngredients.concat(item);
 								setSelectedIngredients(newSelectedIngredients);
 								setInputValue('');
@@ -89,6 +101,7 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 						</View>
 					)}
 				/>
+				<Intolerances intolerances={intolerances} setIntolerances={setIntolerances} />
 
 				<TouchableOpacity style={styles.submit_button} onPress={() => getRecipes()}>
 					<Text style={styles.submit_text}>Get Recipes</Text>

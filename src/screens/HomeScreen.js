@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 		// borderColor: 'darkblue',
 		// borderRadius: 8,
 		margin: 10
-	},
+	}
 });
 
 export default HomeScreen;

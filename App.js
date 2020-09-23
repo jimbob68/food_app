@@ -9,6 +9,7 @@ import RecipeSelectScreen from './src/screens/RecipeSelectScreen.js';
 import ResultsScreen from './src/screens/ResultsScreen';
 import RecipeDetailsScreen from './src/screens/RecipeDetailsScreen.js';
 import HomeScreen from './src/screens/HomeScreen.js';
+import { MenuProvider } from 'react-native-popup-menu';
 
 const Stack = createStackNavigator();
 
@@ -28,80 +29,81 @@ export default function App() {
 	// }, []);
 
 	return (
-		<NavigationContainer>
-			<Stack.Navigator>
-				<Stack.Screen
-					name="HomeScreen"
-					component={HomeScreen}
-					options={{
-						title: 'Home',
-						headerStyle: {
-							backgroundColor: 'blue'
-						},
-						headerTintColor: '#fff',
-						headerTitleStyle: {
-							fontWeight: 'bold',
-							fontSize: 20
-						}
-					}}
-				/>
+		<MenuProvider>
+			<NavigationContainer>
+				<Stack.Navigator>
+					<Stack.Screen
+						name="HomeScreen"
+						component={HomeScreen}
+						options={{
+							title: 'Home',
+							headerStyle: {
+								backgroundColor: 'blue'
+							},
+							headerTintColor: '#fff',
+							headerTitleStyle: {
+								fontWeight: 'bold',
+								fontSize: 20
+							}
+						}}
+					/>
 
-				<Stack.Screen
-					name="RecipeSelectScreen"
-					component={RecipeSelectScreen}
-					options={{
-						title: 'Select Ingredients',
-						headerStyle: {
-							backgroundColor: 'blue'
-						},
-						headerTintColor: '#fff',
-						headerTitleStyle: {
-							fontWeight: 'bold',
-							fontSize: 20
-						}
-					}}
-					// initialParams={{
-					// 	selectedIngredients: selectedIngredients,
-					// 	setSelectedIngredients: setSelectedIngredients,
-					// 	recipeResults: recipeResults,
-					// 	setRecipeResults: setRecipeResults
-					// }}
-				/>
+					<Stack.Screen
+						name="RecipeSelectScreen"
+						component={RecipeSelectScreen}
+						options={{
+							title: 'Select Ingredients',
+							headerStyle: {
+								backgroundColor: 'blue'
+							},
+							headerTintColor: '#fff',
+							headerTitleStyle: {
+								fontWeight: 'bold',
+								fontSize: 20
+							}
+						}}
+						// initialParams={{
+						// 	selectedIngredients: selectedIngredients,
+						// 	setSelectedIngredients: setSelectedIngredients,
+						// 	recipeResults: recipeResults,
+						// 	setRecipeResults: setRecipeResults
+						// }}
+					/>
 
-				<Stack.Screen
-					name="ResultsScreen"
-					component={ResultsScreen}
-					options={{
-						title: 'Search Results',
-						headerStyle: {
-							backgroundColor: 'blue'
-						},
-						headerTintColor: '#fff',
-						headerTitleStyle: {
-							fontWeight: 'bold',
-							fontSize: 20
-						}
-					}}
-				/>
-				<Stack.Screen
-					name="RecipeDetailsScreen"
-					component={RecipeDetailsScreen}
-					options={{
-						title: 'Recipe Details',
-						headerStyle: {
-							backgroundColor: 'blue'
-						},
-						headerTintColor: '#fff',
-						headerTitleStyle: {
-							fontWeight: 'bold',
-							fontSize: 20
-						}
-					}}
-				/>
-				{/* <ScrollView style={styles.container}> */}
-				{/* <NavBar /> */}
-				{/* <Text>{recipeName}</Text> */}
-				{/* <RecipeSelectScreen
+					<Stack.Screen
+						name="ResultsScreen"
+						component={ResultsScreen}
+						options={{
+							title: 'Search Results',
+							headerStyle: {
+								backgroundColor: 'blue'
+							},
+							headerTintColor: '#fff',
+							headerTitleStyle: {
+								fontWeight: 'bold',
+								fontSize: 20
+							}
+						}}
+					/>
+					<Stack.Screen
+						name="RecipeDetailsScreen"
+						component={RecipeDetailsScreen}
+						options={{
+							title: 'Recipe Details',
+							headerStyle: {
+								backgroundColor: 'blue'
+							},
+							headerTintColor: '#fff',
+							headerTitleStyle: {
+								fontWeight: 'bold',
+								fontSize: 20
+							}
+						}}
+					/>
+					{/* <ScrollView style={styles.container}> */}
+					{/* <NavBar /> */}
+					{/* <Text>{recipeName}</Text> */}
+					{/* <RecipeSelectScreen
 						selectedIngredients={selectedIngredients}
 						setSelectedIngredients={setSelectedIngredients}
 						recipeResults={recipeResults}
@@ -110,8 +112,9 @@ export default function App() {
 					<ResultsScreen recipeResults={recipeResults} setSelectedRecipe={setSelectedRecipe} />
 
 					<RecipeResultScreen selectedRecipe={selectedRecipe} /> */}
-				{/* </ScrollView> */}
-			</Stack.Navigator>
-		</NavigationContainer>
+					{/* </ScrollView> */}
+				</Stack.Navigator>
+			</NavigationContainer>
+		</MenuProvider>
 	);
 }
