@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, View, StyleSheet, Image } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
 	return (
 		<View style={styles.home_container}>
-			<Text style={styles.home_title}>Waste-Not Want-Not</Text>
+			{/* <Text style={styles.home_title}>Waste-Not Want-Not</Text> */}
+			<Image style={styles.home_image} source={require('../../assets/WNWNLogo.png')} />
 			<Text style={styles.home_text}>
 				Welcome to Waste-Not Want-Not, the App to help us all cut down on our food waste.
 			</Text>
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
 		color: 'darkblue',
 		textAlign: 'center',
 		padding: 20,
-		marginTop: 50
+		marginTop: 30
 	},
 	start_recipe_search_button: {
 		borderWidth: 1,
@@ -54,7 +55,16 @@ const styles = StyleSheet.create({
 		padding: 5,
 		textAlign: 'center',
 		fontSize: 25
-	}
+	},
+	home_image: {
+		height: 300,
+		width: 300,
+		alignSelf: 'center',
+		// borderWidth: 2,
+		// borderColor: 'darkblue',
+		// borderRadius: 8,
+		margin: 10
+	},
 });
 
 export default HomeScreen;
