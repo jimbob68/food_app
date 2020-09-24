@@ -197,9 +197,9 @@ const intolerance_dropdown = {
 };
 const intolerance_option = {
 	optionText: {
-		fontSize: 25,
+		fontSize: 22,
 		// marginBottom: 1,
-		padding: 5,
+		padding: 4,
 		backgroundColor: 'lightblue',
 		width: 250,
 		textAlign: 'center'
