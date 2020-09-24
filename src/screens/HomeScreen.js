@@ -1,20 +1,22 @@
 import React from 'react';
-import { Text, TouchableOpacity, View, StyleSheet, Image } from 'react-native';
+import { Text, TouchableOpacity, View, StyleSheet, Image, ScrollView } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
 	return (
 		<View style={styles.home_container}>
-			{/* <Text style={styles.home_title}>Waste-Not Want-Not</Text> */}
-			<Image style={styles.home_image} source={require('../../assets/WNWNLogo.png')} />
-			<Text style={styles.home_text}>
-				Welcome to Waste-Not Want-Not, the App to help us all cut down on our food waste.
-			</Text>
-			<TouchableOpacity
-				style={styles.start_recipe_search_button}
-				onPress={() => navigation.navigate('RecipeSelectScreen')}
-			>
-				<Text style={styles.start_recipe_search_text}>Search Recipes</Text>
-			</TouchableOpacity>
+			<ScrollView>
+				{/* <Text style={styles.home_title}>Waste-Not Want-Not</Text> */}
+				<Image style={styles.home_image} source={require('../../assets/WNWNLogo.png')} />
+				<Text style={styles.home_text}>
+					Welcome to Waste-Not Want-Not, the App to help us all cut down on our food waste.
+				</Text>
+				<TouchableOpacity
+					style={styles.start_recipe_search_button}
+					onPress={() => navigation.navigate('RecipeSelectScreen')}
+				>
+					<Text style={styles.start_recipe_search_text}>Search Recipes</Text>
+				</TouchableOpacity>
+			</ScrollView>
 		</View>
 	);
 };
