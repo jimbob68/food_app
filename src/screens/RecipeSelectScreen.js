@@ -45,7 +45,7 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 				properlyFormattedIngredients +
 				'&intolerances=' +
 				properlyFormattedIntolerances +
-				'&number=2&apiKey=' +
+				'&number=5&apiKey=' +
 				ApiKey
 		)
 			.then((res) => res.json())
