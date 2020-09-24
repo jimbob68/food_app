@@ -123,8 +123,11 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 				renderItem={({ item, index }) => (
 					<View keyExtractor={index.toString()} style={styles.intolerance_select}>
 						<Text style={styles.intolerance_name}>{item}</Text>
-						<TouchableOpacity style={styles.remove_button} onPress={() => removeIntolerance(item)}>
-							<Text style={styles.remove_button_text}>X</Text>
+						<TouchableOpacity
+							style={styles.remove_intolerance_button}
+							onPress={() => removeIntolerance(item)}
+						>
+							<Text style={styles.remove_intolerance_button_text}>X</Text>
 						</TouchableOpacity>
 					</View>
 				)}
@@ -146,7 +149,7 @@ const styles = StyleSheet.create({
 		fontSize: 25
 	},
 
-	remove_button: {
+	remove_intolerance_button: {
 		marginLeft: 25,
 		backgroundColor: 'red',
 		padding: 10,
@@ -154,7 +157,7 @@ const styles = StyleSheet.create({
 		height: 50
 	},
 
-	remove_button_text: {
+	remove_intolerance_button_text: {
 		color: 'white',
 		fontSize: 25,
 		fontWeight: 'bold'
@@ -178,7 +181,8 @@ const styles = StyleSheet.create({
 		alignSelf: 'center'
 	},
 	intolerances_container: {
-		alignSelf: 'center'
+		alignSelf: 'center',
+		flex: 1
 	}
 });
 

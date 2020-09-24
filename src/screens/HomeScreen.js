@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		// flexDirection: 'column',
 		alignItems: 'center',
-		paddingVertical: 30,
+		paddingVertical: 20,
 		paddingHorizontal: 15,
 		backgroundColor: 'pink',
 		// height: '100%',
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 		color: 'darkblue',
 		textAlign: 'center',
 		padding: 20,
-		marginTop: 30
+		marginTop: 20
 	},
 	start_recipe_search_button: {
 		borderWidth: 1,
@@ -57,13 +57,13 @@ const styles = StyleSheet.create({
 		fontSize: 25
 	},
 	home_image: {
-		height: 300,
-		width: 300,
-		alignSelf: 'center',
+		height: 250,
+		width: 250,
+		alignSelf: 'center'
 		// borderWidth: 2,
 		// borderColor: 'darkblue',
 		// borderRadius: 8,
-		margin: 10
+		// margin: 10
 	}
 });
 
