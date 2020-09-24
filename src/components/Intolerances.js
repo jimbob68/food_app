@@ -11,14 +11,15 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 	};
 
 	return (
-		<View>
+		<View style={styles.intolerances_container}>
 			<Menu>
-				<MenuTrigger>
-					<Text>Add Any Intolerances Here:</Text>
+				<MenuTrigger style={styles.intolerance_button}>
+					<Text style={styles.intolerance_button_text}>Add Intolerances</Text>
 				</MenuTrigger>
-				<MenuOptions>
+				<MenuOptions style={styles.intolerance_options} customStyles={intolerance_dropdown}>
 					<MenuOption
 						text="Dairy"
+						customStyles={intolerance_option}
 						onSelect={() => {
 							const newSelectedIntolerances = intolerances.concat('Dairy');
 							setIntolerances(newSelectedIntolerances);
@@ -26,6 +27,7 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 					/>
 					<MenuOption
 						text="Egg"
+						customStyles={intolerance_option}
 						onSelect={() => {
 							const newSelectedIntolerances = intolerances.concat('Egg');
 							setIntolerances(newSelectedIntolerances);
@@ -33,6 +35,7 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 					/>
 					<MenuOption
 						text="Gluten"
+						customStyles={intolerance_option}
 						onSelect={() => {
 							const newSelectedIntolerances = intolerances.concat('Gluten');
 							setIntolerances(newSelectedIntolerances);
@@ -40,6 +43,7 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 					/>
 					<MenuOption
 						text="Grain"
+						customStyles={intolerance_option}
 						onSelect={() => {
 							const newSelectedIntolerances = intolerances.concat('Grain');
 							setIntolerances(newSelectedIntolerances);
@@ -47,6 +51,7 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 					/>
 					<MenuOption
 						text="Peanut"
+						customStyles={intolerance_option}
 						onSelect={() => {
 							const newSelectedIntolerances = intolerances.concat('Peanut');
 							setIntolerances(newSelectedIntolerances);
@@ -54,6 +59,7 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 					/>
 					<MenuOption
 						text="Seafood"
+						customStyles={intolerance_option}
 						onSelect={() => {
 							const newSelectedIntolerances = intolerances.concat('Seafood');
 							setIntolerances(newSelectedIntolerances);
@@ -61,6 +67,7 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 					/>
 					<MenuOption
 						text="Sesame"
+						customStyles={intolerance_option}
 						onSelect={() => {
 							const newSelectedIntolerances = intolerances.concat('Sesame');
 							setIntolerances(newSelectedIntolerances);
@@ -68,6 +75,7 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 					/>
 					<MenuOption
 						text="Shellfish"
+						customStyles={intolerance_option}
 						onSelect={() => {
 							const newSelectedIntolerances = intolerances.concat('Shellfish');
 							setIntolerances(newSelectedIntolerances);
@@ -75,6 +83,7 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 					/>
 					<MenuOption
 						text="Soy"
+						customStyles={intolerance_option}
 						onSelect={() => {
 							const newSelectedIntolerances = intolerances.concat('Soy');
 							setIntolerances(newSelectedIntolerances);
@@ -82,6 +91,7 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 					/>
 					<MenuOption
 						text="Sulfite"
+						customStyles={intolerance_option}
 						onSelect={() => {
 							const newSelectedIntolerances = intolerances.concat('Sulfite');
 							setIntolerances(newSelectedIntolerances);
@@ -89,6 +99,7 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 					/>
 					<MenuOption
 						text="Tree Nut"
+						customStyles={intolerance_option}
 						onSelect={() => {
 							const newSelectedIntolerances = intolerances.concat('Tree Nut');
 							setIntolerances(newSelectedIntolerances);
@@ -96,6 +107,7 @@ const Intolerances = ({ intolerances, setIntolerances }) => {
 					/>
 					<MenuOption
 						text="Wheat"
+						customStyles={intolerance_option}
 						onSelect={() => {
 							const newSelectedIntolerances = intolerances.concat('Wheat');
 							setIntolerances(newSelectedIntolerances);
@@ -146,7 +158,49 @@ const styles = StyleSheet.create({
 		color: 'white',
 		fontSize: 25,
 		fontWeight: 'bold'
+	},
+	intolerance_button: {
+		borderWidth: 1,
+		borderColor: 'black',
+		backgroundColor: 'red',
+		borderRadius: 8,
+		marginTop: 20,
+		width: 250
+		// alignSelf: 'center'
+	},
+	intolerance_button_text: {
+		color: 'white',
+		padding: 5,
+		textAlign: 'center',
+		fontSize: 25
+	},
+	intolerance_options: {
+		alignSelf: 'center'
+	},
+	intolerances_container: {
+		alignSelf: 'center'
 	}
 });
+
+const intolerance_dropdown = {
+	optionsContainer: {
+		width: 250
+		// backgroundColor: 'lightgrey'
+	}
+};
+const intolerance_option = {
+	optionText: {
+		fontSize: 25,
+		// marginBottom: 1,
+		padding: 5,
+		backgroundColor: 'lightblue',
+		width: 250,
+		textAlign: 'center'
+	},
+	optionWrapper: {
+		marginTop: 1,
+		padding: 0
+	}
+};
 
 export default Intolerances;
