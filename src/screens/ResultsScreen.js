@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { Text, FlatList, TouchableOpacity, Image, StyleSheet, View } from 'react-native';
 
 // const ResultsScreen = ({ recipeResults, setSelectedRecipe }) => {
+
 const ResultsScreen = ({ route, navigation }) => {
+	
 	const [ recipeResults, setRecipeResults ] = useState(route.params.recipeResults.results);
+	
 	return (
 		<View style={styles.results_container}>
-			{console.log('recipe results', recipeResults)}
+			{/* {console.log('recipe results', recipeResults)} */}
 			<Text style={styles.results_title}>Click a recipe for more details!</Text>
+			
 			<FlatList
 				data={recipeResults}
 				renderItem={({ item, index }) => (
@@ -15,10 +19,13 @@ const ResultsScreen = ({ route, navigation }) => {
 						<TouchableOpacity
 							onPress={() => {
 								// setSelectedRecipe(item);
-								console.log(item);
+								// console.log(item);
 								navigation.navigate('RecipeDetailsScreen', { selectedRecipe: item });
 							}}
 						>
+
+					
+
 							<Text style={styles.recipe_result_text}>{item.title}</Text>
 						</TouchableOpacity>
 

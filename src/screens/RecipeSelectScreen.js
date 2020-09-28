@@ -4,7 +4,7 @@ import ApiKey from '../../ApiKey.js';
 import Intolerances from '../components/Intolerances.js';
 
 // const RecipeSelectScreen = ({ selectedIngredients, setSelectedIngredients, recipeResults, setRecipeResults }) => {
-const RecipeSelectScreen = ({ route, navigation }) => {
+	const RecipeSelectScreen = ({ route, navigation }) => {
 	const [ selectedIngredients, setSelectedIngredients ] = useState([]);
 	// const {setSelectedIngredients} = route.params
 	const [ recipeResults, setRecipeResults ] = useState([]);
@@ -55,8 +55,10 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 				setRecipeResults(results);
 				return results;
 			})
+			
 			// .then(() => console.log('result', recipeResults))
-			.then((results) => navigation.navigate('ResultsScreen', { recipeResults: results }));
+			.then((results) => navigation.navigate('ResultsScreen', { recipeResults: results }))
+			
 	};
 
 	return (
@@ -112,6 +114,16 @@ const RecipeSelectScreen = ({ route, navigation }) => {
 };
 
 const styles = StyleSheet.create({
+
+	recipe_select_container: {
+		flex: 1,
+		alignItems: 'center',
+		paddingVertical: 30,
+		paddingHorizontal: 15,
+		backgroundColor: 'pink',
+		// justifyContent: 'flex-start'
+	},
+
 	font: {
 		fontSize: 25,
 		textAlign: 'center'
@@ -141,27 +153,12 @@ const styles = StyleSheet.create({
 		fontSize: 25
 	},
 	ingredient_select: {
-		// flex: 1,
+		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		paddingTop: 10
+		paddingTop: 10,
 	},
 
-	recipe_select_container: {
-		flex: 1,
-		// flexDirection: 'column',
-		alignItems: 'center',
-		paddingVertical: 30,
-		paddingHorizontal: 15,
-		backgroundColor: 'pink',
-		// height: '100%',
-		justifyContent: 'flex-start'
-	},
-	// flatlist: {
-	// 	height: 20,
-	// 	margin: 0,
-	// 	padding: 0
-	// },
 	remove_button: {
 		marginLeft: 25,
 		backgroundColor: 'red',

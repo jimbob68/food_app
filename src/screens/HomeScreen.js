@@ -50,7 +50,9 @@ const styles = StyleSheet.create({
 		borderColor: 'black',
 		backgroundColor: 'green',
 		borderRadius: 8,
-		marginTop: 20
+		marginTop: 20,
+		width: 250,
+		alignSelf: 'center',
 	},
 	start_recipe_search_text: {
 		color: 'white',

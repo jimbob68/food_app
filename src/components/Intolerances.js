@@ -185,7 +185,16 @@ const styles = StyleSheet.create({
 	},
 	intolerances_container: {
 		alignSelf: 'center',
-		flex: 1
+		flex: 1,
+
+
+		
+	
+		alignItems: 'center',
+		paddingVertical: 30,
+		paddingHorizontal: 15,
+		backgroundColor: 'pink',
+		justifyContent: 'flex-start'
 	}
 });
 
