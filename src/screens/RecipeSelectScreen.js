@@ -54,6 +54,7 @@ import Intolerances from '../components/Intolerances.js';
 			.then((results) => {
 				setRecipeResults(results);
 				return results;
+				
 			})
 			
 			// .then(() => console.log('result', recipeResults))

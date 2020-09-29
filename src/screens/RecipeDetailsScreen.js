@@ -37,7 +37,15 @@ const RecipeDetailsScreen = ({ route, navigation }) => {
 			<ScrollView>
 				<Text style={styles.recipe_title}>{selectedRecipe.title}</Text>
 				{recipeInfo.diets ? (
+					recipeInfo.diets.length === 0 ? (
+						<Text style={styles.recipe_detail}>Dietary Info: None</Text>
+					) : (
 					<Text style={styles.recipe_detail}>Dietary Info: {recipeInfo.diets.join()}</Text>
+					)
+					// if(recipeInfo.diets.length === 0) {
+					// 	<Text style={styles.recipe_detail}>Dietary Info: None</Text>	
+					// } else {
+					// 	<Text style={styles.recipe_detail}>Dietary Info: {recipeInfo.diets.join()}</Text>}
 				) : (
 					<Text>None</Text>
 				)}

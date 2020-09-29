@@ -10,8 +10,10 @@ const ResultsScreen = ({ route, navigation }) => {
 	return (
 		<View style={styles.results_container}>
 			{/* {console.log('recipe results', recipeResults)} */}
-			<Text style={styles.results_title}>Click a recipe for more details!</Text>
+			{recipeResults.length > 0 ? (<Text style={styles.results_title}>Click a recipe for more details!</Text>) : (<Text></Text>)}
 			
+			
+			{recipeResults.length === 0 ? (<Text style={styles.recipe_result_text}>Sorry, there were no recipe results for this search from the API!!</Text>) : (
 			<FlatList
 				data={recipeResults}
 				renderItem={({ item, index }) => (
@@ -23,6 +25,7 @@ const ResultsScreen = ({ route, navigation }) => {
 								navigation.navigate('RecipeDetailsScreen', { selectedRecipe: item });
 							}}
 						>
+							
 
 					
 
@@ -46,7 +49,7 @@ const ResultsScreen = ({ route, navigation }) => {
 						</TouchableOpacity>
 					</View>
 				)}
-			/>
+			/> )}
 		</View>
 	);
 };
