@@ -56,6 +56,11 @@ import Intolerances from '../components/Intolerances.js';
 				return results;
 				
 			})
+			.then((results) => {
+				setSelectedIngredients([])
+				setIntolerances([])
+				return results;
+			})
 			
 			// .then(() => console.log('result', recipeResults))
 			.then((results) => navigation.navigate('ResultsScreen', { recipeResults: results }))

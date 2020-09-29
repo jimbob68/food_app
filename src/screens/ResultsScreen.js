@@ -13,7 +13,13 @@ const ResultsScreen = ({ route, navigation }) => {
 			{recipeResults.length > 0 ? (<Text style={styles.results_title}>Click a recipe for more details!</Text>) : (<Text></Text>)}
 			
 			
-			{recipeResults.length === 0 ? (<Text style={styles.recipe_result_text}>Sorry, there were no recipe results for this search from the API!!</Text>) : (
+			{recipeResults.length === 0 ? (<><Text style={styles.recipe_result_text}>Sorry, there were no recipe results for this search from the API!!</Text>
+			<TouchableOpacity
+			style={styles.new_search_button}
+			onPress={() => navigation.navigate('RecipeSelectScreen')}
+		>
+			<Text style={styles.new_search_text}>New Search</Text>
+		</TouchableOpacity></>) : (
 			<FlatList
 				data={recipeResults}
 				renderItem={({ item, index }) => (
@@ -89,7 +95,21 @@ const styles = StyleSheet.create({
 	image_link: {
 		width: 100,
 		alignSelf: 'center'
-	}
+	},
+	new_search_button: {
+		borderWidth: 1,
+		borderColor: 'black',
+		backgroundColor: 'green',
+		borderRadius: 8,
+		marginTop: 20,
+		width: 250,
+	},
+	new_search_text: {
+		color: 'white',
+		padding: 5,
+		textAlign: 'center',
+		fontSize: 25
+	},
 });
 
 export default ResultsScreen;
